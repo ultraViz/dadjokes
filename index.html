@@ -1,0 +1,48 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+	</head>
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			padding: 10px;
+		}
+
+		ul {
+			width: 100%;
+			max-width: 600px;
+			min-width: 320px;
+		}
+		li {
+			padding-bottom: 20px;
+			border-bottom: 1px lightgray solid;
+			padding: 5px;
+		}
+	</style>
+	<body>
+		<button>Hey Stephen, Press me!</button>
+		<ul id="jokes"></ul>
+		<script>
+			const getDadJoke = async () => {
+				const config = { headers: { Accept: "application/json" } };
+				const res = await axios.get("https://icanhazdadjoke.com/", config);
+				console.log(res.data.joke);
+
+				const newLI = document.createElement("LI");
+				newLI.append(res.data.joke);
+				jokes.append(newLI);
+			};
+
+			document.querySelector("button").addEventListener("click", () => {
+				getDadJoke();
+			});
+		</script>
+	</body>
+</html>
